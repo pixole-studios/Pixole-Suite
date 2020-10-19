@@ -28,12 +28,15 @@ namespace Pixole_Suite
     public sealed partial class MainWindow : Window
     {
         static String REPO_URL = "https://github.com/pixole-studios/Pixole-Suite";
+        static String MODULE_RELATIVE_DIR = "\\Modules\\";
+        static String MODULE_LIST_FILENAME = MODULE_RELATIVE_DIR + "modules.csv";
 
         public MainWindow()
         {
             this.InitializeComponent();
             this.Title = "Pixole Suite";
             NavigateToView("HomePage");
+            LoadInstalledModules();
         }
 
         private NavLink _lastNavItem;
@@ -46,18 +49,42 @@ namespace Pixole_Suite
             if (!NavigateToView(clickedView)) return;
             _lastNavItem = item;
         }
+
         private bool NavigateToView(string clickedView)
         {
             var view = Assembly.GetExecutingAssembly().GetType($"Pixole_Suite.Views.{clickedView}");
             if (string.IsNullOrWhiteSpace(clickedView) || view == null)
             {
                 //TODO : Handle this error with dialog box
+                ShowErrorDialog("Unable to locate view: " + clickedView);
                 return false;
             }
 
             this.contentFrame.Navigate(view, null, new EntranceNavigationTransitionInfo());
             return true;
         }
+
+        private void LoadInstalledModules()
+        {
+            // CSV in format Label,PageName
+            var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + MODULE_LIST_FILENAME;
+            try
+            {
+                var contents = File.ReadAllText(path);
+                var lines = contents.Split("\n");
+                foreach (string line in lines)
+                {
+                    var vals = line.Split(",");
+                    _navLinks.Add(new NavLink() { Label = vals[0], PageName = vals[1] });
+                }
+
+            }
+            catch
+            {
+                Debug.Print("Error occurred whilst reading file: " + path);
+            }
+        }
+    
 
         public class NavLink
         {
@@ -69,10 +96,8 @@ namespace Pixole_Suite
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "Home", PageName="HomePage"},
-            new NavLink() { Label = "Password Hasher", PageName="HomePage"},
-            new NavLink() { Label = "Petal Keyboard", PageName="DemoPage1"},
-            new NavLink() { Label = "Task Manager", PageName="DemoPage1"},
         };
+
 
         public ObservableCollection<NavLink> NavLinks
         {
@@ -125,7 +150,19 @@ namespace Pixole_Suite
             };
             aboutDialog.XamlRoot = this.Content.XamlRoot;
             var task = aboutDialog.ShowAsync();
+        }
 
+        private void ShowErrorDialog(string message)
+        {
+            var errDialog = new ContentDialog
+            {
+                Title = "Error",
+                Content = new TextBlock() {Text = message },
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Close
+            };
+            errDialog.XamlRoot = this.Content.XamlRoot;
+            var task = errDialog.ShowAsync();
         }
     }
 }

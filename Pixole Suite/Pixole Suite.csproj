@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
@@ -23,14 +23,14 @@
   <ItemGroup>
     <None Remove="App.xaml" />
     <None Remove="MainWindow.xaml" />
-    <None Remove="Views\DemoPage1.xaml" />
+    <None Remove="Modules\modules.csv" />
     <None Remove="Views\HomePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\DemoPage1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Content Include="Modules\modules.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

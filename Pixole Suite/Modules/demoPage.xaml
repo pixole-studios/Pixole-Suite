@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Pixole_Suite.Views.DemoPage1"
+    x:Class="Pixole_Suite.Views.demoPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Pixole_Suite.Views"
@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="This is a Demo Page" FontFamily="Arial"
+        <TextBlock Text="This is a test Page loaded at runtime" FontFamily="Arial"
     FontSize="24" TextWrapping="WrapWholeWords"
     CharacterSpacing="200" Foreground="CornflowerBlue" />
     </Grid>
