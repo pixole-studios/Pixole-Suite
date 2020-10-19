@@ -94,13 +94,12 @@ namespace Pixole_Suite
                     case "about":
                         ShowAboutDialog();
                         break;
-                    case "Button3":
-                        Debug.Print("clicked source" + name);
+                    case "findOnline":
+                        //TODO: Implement module search online
                         break;
                     default:
                         Debug.Print("Unhandled button click");
                         break;
-
                 }
             }
         }

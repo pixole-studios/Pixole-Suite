@@ -38,13 +38,11 @@
                         <SymbolIcon Symbol="More"/>
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="Share">
+                                <MenuFlyoutItem Text="Find Modules Online" x:Name="findOnline">
                                     <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xE72D;"/>
+                                        <FontIcon Glyph="&#xF6FA;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Copy" Icon="Copy"/>
-                                <MenuFlyoutItem Text="Delete" Icon="Delete"/>
                                 <MenuFlyoutSeparator/>
                                 <MenuFlyoutItem Text="About" Click="More_Menu_click" x:Name="about">
                                     <MenuFlyoutItem.Icon>
