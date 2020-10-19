@@ -9,7 +9,7 @@
     >
 
 
-    <SplitView x:Name="splitView" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+    <SplitView x:Name="splitView"
            IsPaneOpen="True" OpenPaneLength="256" CompactPaneLength="48" DisplayMode="Inline" PanePlacement="Right">
         <SplitView.Pane>
             <Grid>
@@ -49,7 +49,7 @@
                                         <FontIcon Glyph="&#xE946;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Source" Click="More_Menu_click" x:Name="source">
+                                <MenuFlyoutItem Text="View Source Code" Click="More_Menu_click" x:Name="source">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE943;"/>
                                     </MenuFlyoutItem.Icon>

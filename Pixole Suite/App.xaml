@@ -10,6 +10,12 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <Color x:Key="DarkBlue">#040044</Color>
+            <Color x:Key="Turquoise">#00747B</Color>
+            <Color x:Key="Avocado">#78C586</Color>
+            <Color x:Key="Lime">#CBDC48</Color>
+            <Color x:Key="LightPink">#F9BEBE</Color>
+            <Color x:Key="DarkPink">#C9526B</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

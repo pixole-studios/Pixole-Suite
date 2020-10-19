@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock Text="Welcome to Pixole Suite!" FontFamily="Arial"
-    FontSize="24" FontStyle="Italic" TextWrapping="WrapWholeWords"
-    CharacterSpacing="200" Foreground="CornflowerBlue" />
+    FontSize="24" TextWrapping="WrapWholeWords"
+    CharacterSpacing="200" Foreground="{StaticResource DarkBlue}" />
     </Grid>
 </Page>
