@@ -46,12 +46,12 @@
                                 <MenuFlyoutItem Text="Copy" Icon="Copy"/>
                                 <MenuFlyoutItem Text="Delete" Icon="Delete"/>
                                 <MenuFlyoutSeparator/>
-                                <MenuFlyoutItem Text="About">
+                                <MenuFlyoutItem Text="About" Click="More_Menu_click" x:Name="about">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE946;"/>
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Source" Click="More_Source_click">
+                                <MenuFlyoutItem Text="Source" Click="More_Menu_click" x:Name="source">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE943;"/>
                                     </MenuFlyoutItem.Icon>

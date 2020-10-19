@@ -27,6 +27,8 @@ namespace Pixole_Suite
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        static String REPO_URL = "https://github.com/pixole-studios/Pixole-Suite";
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -78,9 +80,59 @@ namespace Pixole_Suite
         }
 
 
-        public void More_Source_click(object sender, RoutedEventArgs e)
+        public void More_Menu_click(object sender, RoutedEventArgs e)
         {
-            Debug.Print("clicked source");
+            if (sender is MenuFlyoutItem i)
+            {
+                string name = i.Name;
+
+                switch (name)
+                {
+                    case "source":
+                        OpenRepoInBrowser();
+                        break;
+                    case "about":
+                        ShowAboutDialog();
+                        break;
+                    case "Button3":
+                        Debug.Print("clicked source" + name);
+                        break;
+                    default:
+                        Debug.Print("Unhandled button click");
+                        break;
+
+                }
+            }
+        }
+
+        private void OpenRepoInBrowser()
+        {
+            Process.Start(new ProcessStartInfo(REPO_URL) { UseShellExecute = true });
+        }
+
+        private void ShowAboutDialog()
+        {
+            var dialog = new ContentDialog
+            {
+                Content = "The font size must be a number between 8 and 100.",
+                CloseButtonText = "Close",
+                DefaultButton = ContentDialogButton.Close
+            };
+            var task = dialog.ShowAsync();
+            //var result = await dialog.ShowAsync();
+
+            //if (result == ContentDialogResult.Primary)
+            //{
+            //    dialog.Text = "User saved their work";
+            //}
+            //else if (result == ContentDialogResult.Secondary)
+            //{
+            //    DialogResult.Text = "User did not save their work";
+            //}
+            //else
+            //{
+            //    DialogResult.Text = "User cancelled the dialog";
+            //}
         }
     }
 }
