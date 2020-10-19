@@ -112,27 +112,21 @@ namespace Pixole_Suite
 
         private void ShowAboutDialog()
         {
-            var dialog = new ContentDialog
+            StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
+            stackPanel.Children.Add(new TextBlock() { Text = "Version: ", FontWeight = Microsoft.UI.Text.FontWeights.Bold });
+            stackPanel.Children.Add(new TextBlock() { Text = "alpha-0.1\n" });
+            stackPanel.Children.Add(new TextBlock() { Text = "GitHub Repository: ", FontWeight = Microsoft.UI.Text.FontWeights.Bold });
+            stackPanel.Children.Add(new TextBlock() { Text = REPO_URL});
+            var aboutDialog = new ContentDialog
             {
-                Content = "The font size must be a number between 8 and 100.",
+                Title = "About",
+                Content = stackPanel,
                 CloseButtonText = "Close",
                 DefaultButton = ContentDialogButton.Close
             };
-            var task = dialog.ShowAsync();
-            //var result = await dialog.ShowAsync();
+            aboutDialog.XamlRoot = this.Content.XamlRoot;
+            var task = aboutDialog.ShowAsync();
 
-            //if (result == ContentDialogResult.Primary)
-            //{
-            //    dialog.Text = "User saved their work";
-            //}
-            //else if (result == ContentDialogResult.Secondary)
-            //{
-            //    DialogResult.Text = "User did not save their work";
-            //}
-            //else
-            //{
-            //    DialogResult.Text = "User cancelled the dialog";
-            //}
         }
     }
 }
