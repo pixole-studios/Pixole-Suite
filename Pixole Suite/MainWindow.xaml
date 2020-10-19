@@ -1,0 +1,76 @@
+﻿<Window
+    x:Class="Pixole_Suite.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="using:Pixole_Suite"
+    mc:Ignorable="d"
+    >
+
+
+    <SplitView x:Name="splitView" PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+           IsPaneOpen="True" OpenPaneLength="256" CompactPaneLength="48" DisplayMode="Inline" PanePlacement="Right">
+        <SplitView.Pane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Modules" x:Name="PaneHeader" Margin="0,12,0,0" FontSize="24" TextAlignment="Center"/>
+                <ListView x:Name="NavLinksList" Margin="0,12,0,0" SelectionMode="None" Grid.Row="1" VerticalAlignment="Stretch" ItemClick="NavLinksList_ItemClick"
+                          IsItemClickEnabled="True" ItemsSource="{x:Bind NavLinks}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Label}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,10,0,10">
+                    <Button Width="Auto" Height="Auto" Background="Transparent" BorderBrush="Transparent" BorderThickness="0"  Margin="23,0,23,0">
+                        <SymbolIcon Symbol="Add"/>
+                    </Button>
+                    <Button Width="Auto" Height="Auto" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="23,0,23,0">
+                        <SymbolIcon Symbol="Remove"/>
+                       </Button>
+                    <Button Width="Auto" Height="Auto" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Margin="23,0,23,0">
+                        <SymbolIcon Symbol="More"/>
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Share">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE72D;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Copy" Icon="Copy"/>
+                                <MenuFlyoutItem Text="Delete" Icon="Delete"/>
+                                <MenuFlyoutSeparator/>
+                                <MenuFlyoutItem Text="About">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE946;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Source" Click="More_Source_click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon Glyph="&#xE943;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </Button.Flyout>
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </SplitView.Pane>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame x:Name="contentFrame"/>
+        </Grid>
+    </SplitView>
+
+</Window>
