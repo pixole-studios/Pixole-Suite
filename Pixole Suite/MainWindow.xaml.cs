@@ -22,15 +22,17 @@ using System.Collections.ObjectModel;
 
 namespace Pixole_Suite
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
+    // Main Window which holds the panel and contents of each module
     public sealed partial class MainWindow : Window
     {
         static String REPO_URL = "https://github.com/pixole-studios/Pixole-Suite";
         static String MODULE_RELATIVE_DIR = "\\Modules\\";
         static String MODULE_LIST_FILENAME = MODULE_RELATIVE_DIR + "modules.csv";
 
+        /// <summary>
+        /// Initialize the main Window and load installed modules
+        /// </summary>
         public MainWindow()
         {
             this.InitializeComponent();
@@ -39,17 +41,34 @@ namespace Pixole_Suite
             LoadInstalledModules();
         }
 
-        private NavLink _lastNavItem;
-        private void NavLinksList_ItemClick(object sender, ItemClickEventArgs e)
+        /// <summary>
+        /// Reads the CSV file of all installed modules, and loads the views into the program
+        /// </summary>
+        private void LoadInstalledModules()
         {
-            var item = e.ClickedItem as NavLink;
-            if (item == null || item == _lastNavItem)
-                return;
-            var clickedView = item.PageName?.ToString() ?? "SettingsView";
-            if (!NavigateToView(clickedView)) return;
-            _lastNavItem = item;
+            // CSV in format Filename,Label,PageName
+            var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + MODULE_LIST_FILENAME;
+            try
+            {
+                var contents = File.ReadAllText(path);
+                var lines = contents.Split("\n");
+                foreach (string line in lines)
+                {
+                    var vals = line.Split(",");
+                    _navLinks.Add(new NavLink() { Label = vals[1], PageName = vals[2] });
+                }
+            }
+            catch
+            {
+                Debug.Print("Error occurred whilst reading file: " + path);
+            }
         }
 
+        /// <summary>
+        /// Puts a view as the contents of the main window
+        /// </summary>
+        /// <param name="clickedView">Name of the view to navigate to</param>
+        /// <returns></returns>
         private bool NavigateToView(string clickedView)
         {
             var view = Assembly.GetExecutingAssembly().GetType($"Pixole_Suite.Views.{clickedView}");
@@ -64,28 +83,9 @@ namespace Pixole_Suite
             return true;
         }
 
-        private void LoadInstalledModules()
-        {
-            // CSV in format Label,PageName
-            var path = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + MODULE_LIST_FILENAME;
-            try
-            {
-                var contents = File.ReadAllText(path);
-                var lines = contents.Split("\n");
-                foreach (string line in lines)
-                {
-                    var vals = line.Split(",");
-                    _navLinks.Add(new NavLink() { Label = vals[0], PageName = vals[1] });
-                }
-
-            }
-            catch
-            {
-                Debug.Print("Error occurred whilst reading file: " + path);
-            }
-        }
-    
-
+        /// <summary>
+        /// Class bind for each element on the navigation panel
+        /// </summary>
         public class NavLink
         {
             public string Label { get; set; }
@@ -93,18 +93,27 @@ namespace Pixole_Suite
             public string PageName { get; set; }
         }
 
+        /// <summary>
+        /// Collection of all the NavLinks on the panel
+        /// </summary>
         private ObservableCollection<NavLink> _navLinks = new ObservableCollection<NavLink>()
         {
             new NavLink() { Label = "Home", PageName="HomePage"},
         };
 
-
+        /// <summary>
+        /// Getter for navlinks
+        /// </summary>
         public ObservableCollection<NavLink> NavLinks
         {
             get { return _navLinks; }
         }
 
-
+        /// <summary>
+        /// On clicking a menu item in the more flyout - perform required actions
+        /// </summary>
+        /// <param name="sender">The event sender</param>
+        /// <param name="e">RoutedEventArgs</param>
         public void More_Menu_click(object sender, RoutedEventArgs e)
         {
             if (sender is MenuFlyoutItem i)
@@ -129,11 +138,34 @@ namespace Pixole_Suite
             }
         }
 
+
+        private NavLink _lastNavItem;
+        /// <summary>
+        /// When a nav item is clicked, navigate to it
+        /// </summary>
+        /// <param name="sender">The event sender</param>
+        /// <param name="e">ItemClickEventArgs</param>
+        private void NavLinksList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem as NavLink;
+            if (item == null || item == _lastNavItem)
+                return;
+            var clickedView = item.PageName?.ToString() ?? "SettingsView";
+            if (!NavigateToView(clickedView)) return;
+            _lastNavItem = item;
+        }
+
+        /// <summary>
+        /// Launch the git repository in browser
+        /// </summary>
         private void OpenRepoInBrowser()
         {
             Process.Start(new ProcessStartInfo(REPO_URL) { UseShellExecute = true });
         }
 
+        /// <summary>
+        /// Displays and About dialog with version info etc
+        /// </summary>
         private void ShowAboutDialog()
         {
             StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
@@ -152,6 +184,10 @@ namespace Pixole_Suite
             var task = aboutDialog.ShowAsync();
         }
 
+        /// <summary>
+        /// Display an error dialog with the provided message
+        /// </summary>
+        /// <param name="message">The error message to display</param>
         private void ShowErrorDialog(string message)
         {
             var errDialog = new ContentDialog
