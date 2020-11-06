@@ -16,6 +16,7 @@ using System.Reflection;
 using Microsoft.UI.Xaml.Media.Animation;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+//using System.Windows.Forms;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -139,6 +140,12 @@ namespace Pixole_Suite
         }
 
 
+        public void Add_click(object sender, RoutedEventArgs e)
+        {
+            // TODO update to System.Windows.Forms.FolderBrowserDialog()
+        }
+
+
         private NavLink _lastNavItem;
         /// <summary>
         /// When a nav item is clicked, navigate to it
@@ -168,7 +175,7 @@ namespace Pixole_Suite
         /// </summary>
         private void ShowAboutDialog()
         {
-            StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Vertical };
+            StackPanel stackPanel = new StackPanel() { Orientation = Microsoft.UI.Xaml.Controls.Orientation.Vertical };
             stackPanel.Children.Add(new TextBlock() { Text = "Version: ", FontWeight = Microsoft.UI.Text.FontWeights.Bold });
             stackPanel.Children.Add(new TextBlock() { Text = "alpha-0.1\n" });
             stackPanel.Children.Add(new TextBlock() { Text = "GitHub Repository: ", FontWeight = Microsoft.UI.Text.FontWeights.Bold });

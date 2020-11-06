@@ -12,6 +12,10 @@
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
     <RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
     <ApplicationIcon>media\shared\psIcon.ico</ApplicationIcon>
+
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+
   </PropertyGroup>
 
   <ItemGroup>

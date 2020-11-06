@@ -9,8 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Welcome to Pixole Suite!" FontFamily="Arial"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Welcome to Pixole Suite" FontFamily="Arial"
     FontSize="24" TextWrapping="WrapWholeWords"
-    CharacterSpacing="200" Foreground="{StaticResource DarkBlue}" />
+    CharacterSpacing="200" Foreground="{StaticResource DarkBlue}" Grid.Column="0"/>
+        <Image Grid.Column="1" Source="/media/shared/logo_centred_tp.png" Height="100" />
     </Grid>
 </Page>
