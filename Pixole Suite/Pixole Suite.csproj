@@ -38,6 +38,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="media\shared\logo_centred_tp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="media\shared\psIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

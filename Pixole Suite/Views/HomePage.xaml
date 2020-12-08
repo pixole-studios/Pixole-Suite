@@ -9,15 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <TextBlock Text="Welcome to Pixole Suite" FontFamily="Arial" FontSize="30" TextWrapping="WrapWholeWords" Margin="5,5,0,0"/>
 
-        <TextBlock Text="Welcome to Pixole Suite" FontFamily="Arial"
-    FontSize="24" TextWrapping="WrapWholeWords"
-    CharacterSpacing="200" Foreground="{StaticResource DarkBlue}" Grid.Column="0"/>
-        <Image Grid.Column="1" Source="/media/shared/logo_centred_tp.png" Height="100" />
+        <TextBlock Text="Install new modules on the right or switch between currently installed modules" FontFamily="Arial" FontSize="24" TextWrapping="WrapWholeWords" Margin="5,65,150,0"/>
+
+        <Image Source="/media/shared/logo_centred_tp.png" Height="200" HorizontalAlignment="Right"/>
     </Grid>
+
 </Page>
